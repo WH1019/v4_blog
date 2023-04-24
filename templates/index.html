@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load my_tag %}
+<head>
+    <meta charset="UTF-8">
+    <title>浩儿尪</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="/static/my/css/index.css">
+    <link rel="stylesheet" href="/static/my/css/reset.css">
+    <link rel="stylesheet" href="/static/fontawesome-free-5/css/all.min.css">
+    <script src="/static/vue/vue.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+<div id="app">
+    <link rel="stylesheet" :href="'/static/my/css/theme/' + theme +'.css'">
+    <nav>
+        <div class="left">
+            <a href="/">首页</a>
+            <a href="/news">新闻</a>
+            <a href="#">心情</a>
+            <a href="#">关于</a>
+        </div>
+        <div class="right">
+            <img v-show="theme === 'light'" src="/static/my/img/nav/light.svg" @click="setTheme('dark')" alt="">
+            <img v-show="theme === 'dark'" src="/static/my/img/nav/dark.svg" @click="setTheme('light')" alt="">
+
+            {% if request.user.username %}
+                <el-dropdown>
+  <span class="el-dropdown-link">
+    {{ request.user.username }}<i class="el-icon-arrow-down el-icon--right"></i>
+  </span>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item><a href="">个人中心</a></el-dropdown-item>
+                        <el-dropdown-item><a href="">修改头像</a></el-dropdown-item>
+                        <el-dropdown-item><a href="">发布文章</a></el-dropdown-item>
+                        <el-dropdown-item><a href="">后台管理</a></el-dropdown-item>
+                        <el-dropdown-item><a href="/logout">注销退出</a></el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+            {% else %}
+                <a href="/login">登录</a>
+                <a href="/sign">注册</a>
+            {% endif %}
+
+        </div>
+    </nav>
+
+    {% banner 'index' %}
+    <main>
+        {% block main %}
+            <div class="main">
+                <div class="left">
+                    <div class="boutique_article card">
+                        <div class="title">
+                            <h2>精选文章</h2>
+                            <div class="switch_article_category">
+                                <span :active="this_category === 'qianduan'"
+                                      @click="switch_article_category('qianduan')">前端</span>
+                                <span :active="this_category === 'houduan'" @click="switch_article_category('houduan')">后端</span>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <ul v-show="this_category === 'qianduan'" class="qianduan">
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="https://www.linuxprobe.com/wp-content/uploads/2016/10/0-react01-1.jpg"
+                                                 alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>React基本使用</h2>
+                                        <p>Sitemap（站点地图）是一种文件的统称Sitemap（站点地图）是一种文件的统称</p>
+                                        <span>2天前</span>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="https://www.linuxprobe.com/wp-content/uploads/2016/10/0-react01-1.jpg"
+                                                 alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>React基本使用</h2>
+                                        <p>Sitemap（站点地图）是一种文件的统称Sitemap（站点地图）是一种文件的统称</p>
+                                        <span>2天前</span>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="https://www.linuxprobe.com/wp-content/uploads/2016/10/0-react01-1.jpg"
+                                                 alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>React基本使用</h2>
+                                        <p>Sitemap（站点地图）是一种文件的统称Sitemap（站点地图）是一种文件的统称</p>
+                                        <span>2天前</span>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="https://www.linuxprobe.com/wp-content/uploads/2016/10/0-react01-1.jpg"
+                                                 alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>React基本使用</h2>
+                                        <p>Sitemap（站点地图）是一种文件的统称Sitemap（站点地图）是一种文件的统称</p>
+                                        <span>2天前</span>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="https://www.linuxprobe.com/wp-content/uploads/2016/10/0-react01-1.jpg"
+                                                 alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>React基本使用</h2>
+                                        <p>Sitemap（站点地图）是一种文件的统称Sitemap（站点地图）是一种文件的统称</p>
+                                        <span>2天前</span>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="https://www.linuxprobe.com/wp-content/uploads/2016/10/0-react01-1.jpg"
+                                                 alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>React基本使用</h2>
+                                        <p>Sitemap（站点地图）是一种文件的统称Sitemap（站点地图）是一种文件的统称</p>
+                                        <span>2天前</span>
+                                    </div>
+
+                                </li>
+                            </ul>
+                            <ul v-show="this_category === 'houduan'" class="houduan">
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="https://ts1.cn.mm.bing.net/th/id/R-C.f2ceca4c412263f73c4a7afe17a27249?rik=5FzsAnW2xsuoQQ&riu=http%3a%2f%2fwww.info110.com%2fwp-content%2fuploads%2f2020%2f12%2f20201203_5fc890d068ede.jpg&ehk=Nzj%2bY8GmhFJyV8My58gxsDVgxDiUpNBHijGcotdgXcQ%3d&risl=&pid=ImgRaw&r=0"
+                                                 alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>Vue基本使用</h2>
+                                        <p>Sitemap（站点地图）是一种文件的统称Sitemap（站点地图）是一种文件的统称</p>
+                                        <span>2天前</span>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="https://ts1.cn.mm.bing.net/th/id/R-C.f2ceca4c412263f73c4a7afe17a27249?rik=5FzsAnW2xsuoQQ&riu=http%3a%2f%2fwww.info110.com%2fwp-content%2fuploads%2f2020%2f12%2f20201203_5fc890d068ede.jpg&ehk=Nzj%2bY8GmhFJyV8My58gxsDVgxDiUpNBHijGcotdgXcQ%3d&risl=&pid=ImgRaw&r=0"
+                                                 alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>Vue基本使用</h2>
+                                        <p>Sitemap（站点地图）是一种文件的统称Sitemap（站点地图）是一种文件的统称</p>
+                                        <span>2天前</span>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="https://ts1.cn.mm.bing.net/th/id/R-C.f2ceca4c412263f73c4a7afe17a27249?rik=5FzsAnW2xsuoQQ&riu=http%3a%2f%2fwww.info110.com%2fwp-content%2fuploads%2f2020%2f12%2f20201203_5fc890d068ede.jpg&ehk=Nzj%2bY8GmhFJyV8My58gxsDVgxDiUpNBHijGcotdgXcQ%3d&risl=&pid=ImgRaw&r=0"
+                                                 alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>Vue基本使用</h2>
+                                        <p>Sitemap（站点地图）是一种文件的统称Sitemap（站点地图）是一种文件的统称</p>
+                                        <span>2天前</span>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="https://ts1.cn.mm.bing.net/th/id/R-C.f2ceca4c412263f73c4a7afe17a27249?rik=5FzsAnW2xsuoQQ&riu=http%3a%2f%2fwww.info110.com%2fwp-content%2fuploads%2f2020%2f12%2f20201203_5fc890d068ede.jpg&ehk=Nzj%2bY8GmhFJyV8My58gxsDVgxDiUpNBHijGcotdgXcQ%3d&risl=&pid=ImgRaw&r=0"
+                                                 alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>Vue基本使用</h2>
+                                        <p>Sitemap（站点地图）是一种文件的统称Sitemap（站点地图）是一种文件的统称</p>
+                                        <span>2天前</span>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="https://ts1.cn.mm.bing.net/th/id/R-C.f2ceca4c412263f73c4a7afe17a27249?rik=5FzsAnW2xsuoQQ&riu=http%3a%2f%2fwww.info110.com%2fwp-content%2fuploads%2f2020%2f12%2f20201203_5fc890d068ede.jpg&ehk=Nzj%2bY8GmhFJyV8My58gxsDVgxDiUpNBHijGcotdgXcQ%3d&risl=&pid=ImgRaw&r=0"
+                                                 alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>Vue基本使用</h2>
+                                        <p>Sitemap（站点地图）是一种文件的统称Sitemap（站点地图）是一种文件的统称</p>
+                                        <span>2天前</span>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="https://ts1.cn.mm.bing.net/th/id/R-C.f2ceca4c412263f73c4a7afe17a27249?rik=5FzsAnW2xsuoQQ&riu=http%3a%2f%2fwww.info110.com%2fwp-content%2fuploads%2f2020%2f12%2f20201203_5fc890d068ede.jpg&ehk=Nzj%2bY8GmhFJyV8My58gxsDVgxDiUpNBHijGcotdgXcQ%3d&risl=&pid=ImgRaw&r=0"
+                                                 alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>Vue基本使用</h2>
+                                        <p>Sitemap（站点地图）是一种文件的统称Sitemap（站点地图）是一种文件的统称</p>
+                                        <span>2天前</span>
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hotList card">
+                        <div class="title">
+                            <h2>今日热搜</h2>
+                            <div>
+                                <a href="">查看更多</a>
+                            </div>
+                        </div>
+                        <div class="body">
+                            主要内容区域
+                        </div>
+                    </div>
+                    <div class="all_article card">
+                        <div class="title">
+                            <h2>博客文章</h2>
+                        </div>
+                        <div class="body">
+                            <ul>
+                                <li>
+                                    <div class="left">
+                                        <img src="https://www.linuxprobe.com/wp-content/uploads/2016/10/0-react01-1.jpg"
+                                             alt="">
+                                    </div>
+                                    <div class="right">
+                                        <h2><a href="">React基本使用</a></h2>
+                                        <p>安装react包
+                                            python npm instsall react react-dom
+                                            使用react
+                                            '''HTML
+                                            react基本使用
+                                            //2.创建react元素 //参数一：元素名称 //参数二：元素
+                                            python npm instsall react react-dom
+                                            使用react
+                                            '''HTML
+                                            react基本使用
+                                            //2.创建react元素 //参数一：元素名称 //参数二：元素</p>
+                                        <div class="article_info">
+                                            <span>
+                                                <i class="far fa-clock"></i>2023-4-15
+                                            </span>
+                                            <span>
+                                                <i class="fas fa-thumbs-up"></i>231
+                                            </span>
+                                            <span>
+                                                <i class="far fa-eye"></i>231
+                                            </span>
+                                            <span>
+                                                <i class="far fa-comments"></i>231
+                                            </span>
+                                            <span>
+                                                <i class="fas fa-star-half-alt"></i>231
+                                            </span>
+                                        </div>
+                                        <a href="">查看详情</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <img src="https://www.linuxprobe.com/wp-content/uploads/2016/10/0-react01-1.jpg"
+                                             alt="">
+                                    </div>
+                                    <div class="right">
+                                        <h2><a href="">React基本使用</a></h2>
+                                        <p>安装react包
+                                            python npm instsall react react-dom
+                                            使用react
+                                            '''HTML
+                                            react基本使用
+                                            //2.创建react元素 //参数一：元素名称 //参数二：元素
+                                            python npm instsall react react-dom
+                                            使用react
+                                            '''HTML
+                                            react基本使用
+                                            //2.创建react元素 //参数一：元素名称 //参数二：元素</p>
+                                        <div class="article_info">
+                                            <span>
+                                                <i class="far fa-clock"></i>2023-4-15
+                                            </span>
+                                            <span>
+                                                <i class="fas fa-thumbs-up"></i>231
+                                            </span>
+                                            <span>
+                                                <i class="far fa-eye"></i>231
+                                            </span>
+                                            <span>
+                                                <i class="far fa-comments"></i>231
+                                            </span>
+                                            <span>
+                                                <i class="fas fa-star-half-alt"></i>231
+                                            </span>
+                                        </div>
+                                        <a href="">查看详情</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <img src="https://www.linuxprobe.com/wp-content/uploads/2016/10/0-react01-1.jpg"
+                                             alt="">
+                                    </div>
+                                    <div class="right">
+                                        <h2><a href="">React基本使用</a></h2>
+                                        <p>安装react包
+                                            python npm instsall react react-dom
+                                            使用react
+                                            '''HTML
+                                            react基本使用
+                                            //2.创建react元素 //参数一：元素名称 //参数二：元素
+                                            python npm instsall react react-dom
+                                            使用react
+                                            '''HTML
+                                            react基本使用
+                                            //2.创建react元素 //参数一：元素名称 //参数二：元素</p>
+                                        <div class="article_info">
+                                            <span>
+                                                <i class="far fa-clock"></i>2023-4-15
+                                            </span>
+                                            <span>
+                                                <i class="fas fa-thumbs-up"></i>231
+                                            </span>
+                                            <span>
+                                                <i class="far fa-eye"></i>231
+                                            </span>
+                                            <span>
+                                                <i class="far fa-comments"></i>231
+                                            </span>
+                                            <span>
+                                                <i class="fas fa-star-half-alt"></i>231
+                                            </span>
+                                        </div>
+                                        <a href="">查看详情</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <img src="https://www.linuxprobe.com/wp-content/uploads/2016/10/0-react01-1.jpg"
+                                             alt="">
+                                    </div>
+                                    <div class="right">
+                                        <h2><a href="">React基本使用</a></h2>
+                                        <p>安装react包
+                                            python npm instsall react react-dom
+                                            使用react
+                                            '''HTML
+                                            react基本使用
+                                            //2.创建react元素 //参数一：元素名称 //参数二：元素
+                                            python npm instsall react react-dom
+                                            使用react
+                                            '''HTML
+                                            react基本使用
+                                            //2.创建react元素 //参数一：元素名称 //参数二：元素</p>
+                                        <div class="article_info">
+                                            <span>
+                                                <i class="far fa-clock"></i>2023-4-15
+                                            </span>
+                                            <span>
+                                                <i class="fas fa-thumbs-up"></i>231
+                                            </span>
+                                            <span>
+                                                <i class="far fa-eye"></i>231
+                                            </span>
+                                            <span>
+                                                <i class="far fa-comments"></i>231
+                                            </span>
+                                            <span>
+                                                <i class="fas fa-star-half-alt"></i>231
+                                            </span>
+                                        </div>
+                                        <a href="">查看详情</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <img src="https://www.linuxprobe.com/wp-content/uploads/2016/10/0-react01-1.jpg"
+                                             alt="">
+                                    </div>
+                                    <div class="right">
+                                        <h2><a href="">React基本使用</a></h2>
+                                        <p>安装react包
+                                            python npm instsall react react-dom
+                                            使用react
+                                            '''HTML
+                                            react基本使用
+                                            //2.创建react元素 //参数一：元素名称 //参数二：元素
+                                            python npm instsall react react-dom
+                                            使用react
+                                            '''HTML
+                                            react基本使用
+                                            //2.创建react元素 //参数一：元素名称 //参数二：元素</p>
+                                        <div class="article_info">
+                                            <span>
+                                                <i class="far fa-clock"></i>2023-4-15
+                                            </span>
+                                            <span>
+                                                <i class="fas fa-thumbs-up"></i>231
+                                            </span>
+                                            <span>
+                                                <i class="far fa-eye"></i>231
+                                            </span>
+                                            <span>
+                                                <i class="far fa-comments"></i>231
+                                            </span>
+                                            <span>
+                                                <i class="fas fa-star-half-alt"></i>231
+                                            </span>
+                                        </div>
+                                        <a href="">查看详情</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="advertisement card">
+                        <div class="title">
+                            <h2>独家广告</h2>
+                            <div>
+                                <a href="#">申请</a>
+                            </div>
+                        </div>
+                        <div class="body">
+                            主要内容区域
+                        </div>
+                    </div>
+                    <div class="tags card">
+                        <div class="title">
+                            <h2>标签云</h2>
+                        </div>
+                        <div class="body">
+                            <ul>
+                                <li>python</li>
+                                <li>python</li>
+                                <li>python</li>
+                                <li>python</li>
+                                <li>python</li>
+                                <li>python</li>
+                                <li>python</li>
+                                <li>python</li>
+                                <li>python</li>
+                                <li>python</li>
+                                <li>python</li>
+                                <li>python</li>
+                                <li>python</li>
+                                <li>python</li>
+                                <li>python</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="site_info card">
+                        <div class="title">
+                            <h2>站点信息</h2>
+                        </div>
+                        <div class="body">
+                            主要内容区域
+                        </div>
+                    </div>
+                    <div class="links card">
+                        <div class="title">
+                            <h2>友情链接</h2>
+                        </div>
+                        <div class="body">
+                            主要内容区域
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </main>
+    <footer>
+        <div class="left">
+            <p class="thanks">Thank For</p>
+            <p class="site_info">
+                <span><img src="/static/my/img/footer/tencent.png" alt="">腾讯云服务器</span>
+                <span><img src="/static/my/img/footer/tencent.png" alt="">腾讯云SSL证书</span>
+            </p>
+            <p class="version">
+                <span>version</span>
+                <span>1.0.0</span>
+            </p>
+            <p>建站日期：2023-4-15</p>
+            <p class="beian">
+                <a href="https://beian.mit.gov.cn"><img src="/static/my/img/footer/badges.png" alt="">备案号</a>
+            </p>
+        </div>
+        <div class="right">
+            <div class="contact">
+                <div>
+                    <img class="svg" src="/static/my/img/footer/wexin_icon.svg" alt="">
+                    <img class="wechat" src="/static/my/img/footer/wechat.png" alt="">
+                </div>
+                <div>
+                    <img class="svg1" src="/static/my/img/footer/qq_icon.svg" alt="">
+                    <img class="qq" src="/static/my/img/footer/qq.png" alt="">
+                </div>
+                <div>
+                    <a href="https://github.com/" target="_blank">
+                        <img class="svg" src="/static/my/img/footer/github_icon.svg" alt="">
+                    </a>
+                </div>
+                <div>
+                    <a href="https://weibo.com/u/5861292971/home?wvr=5" target="_blank">
+                        <img class="svg" src="/static/my/img/footer/weibo_icon.svg" alt="">
+                    </a>
+                </div>
+            </div>
+            <p>
+                联系邮箱：913681060@qq.com
+            </p>
+        </div>
+    </footer>
+</div>
+<script>
+
+    new Vue({
+        el: '#app',
+        delimiters: ["[[", "]]"],
+        data: {
+            theme: 'light',
+            this_category: 'qianduan',
+        },
+        created() {
+            this.init_theme()
+        },
+        methods: {
+            {#初始化主题#}
+            init_theme() {
+                {#读取存储的主题信息#}
+                let theme = localStorage.getItem('theme')
+                if (theme) {
+                    this.theme = theme
+                }
+            },
+
+            {#设置主题#}
+            setTheme(themeName) {
+                this.theme = themeName
+                {#持久化存储#}
+                localStorage.setItem('theme', themeName)
+            },
+
+            {#选择分类#}
+            switch_article_category(categoryName) {
+                this.this_category = categoryName
+            }
+        }
+    })
+
+    {#获取轮播的div#}
+    let menu_img = document.querySelectorAll('.dynamic_shuffl')
+    {#获取他的长度#}
+    let menu_length = menu_img.length
+    {#初始位置#}
+    let index = 0
+    let timer = null;
+    clearInterval(timer)
+    timer = setInterval(() => {
+        {#进行自加#}
+        index++
+        {#自加到1#}
+        if (index === menu_length) {
+            index = 0
+        }
+        {#样式复原#}
+        for (let i of menu_img) {
+            i.style.opacity = 0
+        }
+        menu_img[index].style.opacity = 1
+    }, 2000)
+</script>
+</body>
+</html>

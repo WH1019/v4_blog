@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "sass": "^1.62.0",
+    "sass-loader": "^13.2.2"
+  },
+  "dependencies": {
+    "vue": "^3.2.47"
+  }
+}
